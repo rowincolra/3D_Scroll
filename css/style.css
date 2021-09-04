@@ -1,0 +1,90 @@
+body {
+    height: 500vw;
+    font-family: 'Apple SD gothic Neo', 'Roboto', 'Noto Sans KR', 'NanumGothic', 'Malgun Gothic', sans-serif;
+    -webkit-overflow-scrolling: touch;
+    color: #555;
+    background: #fff000;
+}
+
+.world {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px;
+}
+
+.stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+.house {
+    width: 100vw;
+    height: 100vh;
+    transform: translateZ(-500vw);
+    transform-style: preserve-3d;
+}
+
+.wall {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.wall-left {
+    left: -500vw;
+    width: 1000vW;
+    transform: rotateY(90deg);
+    background: #f8f8f8;
+}
+
+.wall-right {
+    left: -400vw;
+    width: 1000vW;
+    transform: rotateY(90deg);
+    background: #f8f8f8;
+}
+
+.wall-front-a {transform: translateZ(300vw);}
+.wall-front-b {transform: translateZ(50vw);}
+.wall-front-c {transform: translateZ(-200vw);}
+.wall-front-d {transform: translateZ(-500vw);}
+
+.wall-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wall-title {
+    font-size: 5rem;
+}
+
+.progress-bar-con {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 5px;
+    background: #555;
+    z-index: 100;
+}
+
+.progress-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 5px;
+    background: #00a8ff;
+}
