@@ -17,7 +17,7 @@
 
         barElem.style.width = scrollLocate * 100 + '%';        
     });
-
+ 
     window.addEventListener('mousemove', function (e) {
         mousePos.x = -1 + (e.clientX / window.innerWidth) * 2;
         mousePos.y = 1 - (e.clientY / window.innerHeight) * 2;
