@@ -491,20 +491,20 @@ body[data-char='Ddo'] .me {
 
 
 body[data-char='Ddo'] .me-head {
-    left: 13%;
-    top: 0.5%;
-    width: 70%;
-    height: 25%;
+    left: 9%;
+    top: -2.5%;
+    width: 80%;
+    height: 30%;
 }
 
 body[data-char='Ddo'] .me-head .face-back {
-    left: 8.5%;
-    top: 0%;
-    width: 90%;
-    height: 95%;
+    left: 9%;
+    top: 8%;
+    width: 82%;
+    height: 82%;
 }
 
-body[data-char='Ddo'] .me-head .face-front { background-image: url('../image/me_head_front.png'); }
+body[data-char='Ddo'] .me-head .face-front { background-image: url('../image/btn_image_Ddo.png'); }
 body[data-char='Ddo'] .me-head .face-back { background-image: url('../image/Ddo_haed_back.png'); }
 
 
