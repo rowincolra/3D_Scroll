@@ -494,7 +494,7 @@ body[data-char='Ddo'] .me-head .face-back {
 }
 
 body[data-char='Ddo'] .me-head .face-front { background-image: url('../image/Ddo_head_front.png'); }
-body[data-char='Ddo'] .me-head .face-back { background-image: url('../image/Ddo_head_front.png'); }
+body[data-char='Ddo'] .me-head .face-back { background-image: url('../image/Ddo_haed_back.png'); }
 
 
 body[data-char='Ddo'] .rowin-head {
@@ -517,8 +517,15 @@ body[data-char='Ddo'] .me-body {
     height: calc(466 / 1261 * 100%);
     transform-origin: center center;
 }
-body[data-char='Ddo'] .me-body .face-front { background-image: url('../image/Ddo_body.png'); }
-body[data-char='Ddo'] .me-body .face-back { background-image: url('../image/Ddo_body.png'); }
+body[data-char='Ddo'] .me-body .face-back {
+    left: -19.5%;
+    top: -1%;
+    width: 146%;
+    height: 105%;  
+}
+
+body[data-char='Ddo'] .me-body .face-front { background-image: url('../image/Ddo_body_front.png'); }
+body[data-char='Ddo'] .me-body .face-back { background-image: url('../image/Ddo_body_back.png'); }
 
 body[data-char='Ddo'] .me-arm-right {
     left: calc(295 / 466 * 100%);
@@ -531,7 +538,7 @@ body[data-char='Ddo'] .me-arm-right {
 }
 
 body[data-char='Ddo'] .me-arm-right .face-front { background-image: url('../image/Ddo_arm_R.png'); }
-body[data-char='Ddo'] .me-arm-right .face-back { background-image: url('../image/Ddo_arm_L.png'); }
+/* body[data-char='Ddo'] .me-arm-right .face-back { background-image: url('../image/Ddo_arm_L.png'); } */
 
 body[data-char='Ddo'] .me-arm-left {
     left: -2%;
@@ -547,7 +554,7 @@ body[data-char='Ddo'] .me-arm-right.face-back {
 }
 
 body[data-char='Ddo'] .me-arm-left .face-front { background-image: url('../image/Ddo_arm_L.png'); }
-body[data-char='Ddo'] .me-arm-left .face-back { background-image: url('../image/Ddo_arm_R.png'); }
+/* body[data-char='Ddo'] .me-arm-left .face-back { background-image: url('../image/Ddo_arm_R.png'); } */
 
 body[data-char='Ddo'] .me-arm-left .face-back {
     left: 4%;
@@ -560,8 +567,8 @@ body[data-char='Ddo'] .me-arm-left .face-back {
 
 body[data-char='Ddo'] .me-leg-right {
     left: calc(255 / 510 * 100%);
-    top: calc(765 / 1261 * 100%);
-    width: calc(150 / 466 * 100%);
+    top: calc(760 / 1261 * 100%);
+    width: calc(155 / 466 * 100%);
     height: calc(570 / 1261 * 100%);
     transform-origin: center top;
 }
@@ -569,7 +576,7 @@ body[data-char='Ddo'] .me-leg-right {
 body[data-char='Ddo'] .me-leg-right .face-back {
     left: 2%;
     top:-1%;
-    width: 110%;
+    width: 105%;
     height: 100%;
 }
 
