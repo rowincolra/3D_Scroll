@@ -1,3 +1,4 @@
+
 @keyframes ani-head {
     from {
         transform: rotateX(-5deg);
@@ -503,7 +504,7 @@ body[data-char='Ddo'] .me-head .face-back {
     height: 95%;
 }
 
-body[data-char='Ddo'] .me-head .face-front { background-image: url('../image/Ddo_head_front.png'); }
+body[data-char='Ddo'] .me-head .face-front { background-image: url('../image/Ddo_head_back.png'); }
 body[data-char='Ddo'] .me-head .face-back { background-image: url('../image/Ddo_haed_back.png'); }
 
 
