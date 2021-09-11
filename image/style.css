@@ -1,0 +1,692 @@
+@keyframes ani-head {
+    from {
+        transform: rotateX(-5deg);
+    }
+    to { transform: rotateX(5deg); }
+}
+
+@keyframes ani-body {
+    from {
+        transform: rotateX(0deg);
+    }
+    to { transform: rotateX(6deg); }
+}
+
+@keyframes ani-arm {
+    from {
+        transform: rotateY(1deg);
+    }
+    to {
+        transform: rotateY(-1deg);
+    }
+}
+
+@keyframes ani-running-leg {
+    from {
+        transform: rotateX(-15deg);
+    }
+    to {
+        transform: rotateX(10deg);
+    }
+}
+@keyframes ani-running-tail {
+    from {
+        transform: rotateY(30deg);
+    }
+    to {
+        transform: rotateY(-20deg);
+    }
+}
+
+body {
+    height: 500vw;
+    font-family: 'Apple SD gothic Neo', 'Roboto', 'Noto Sans KR', 'NanumGothic', 'Malgun Gothic', sans-serif;
+    -webkit-overflow-scrolling: touch;
+    color: #555;
+    background: #ffbe93;
+}
+
+/* body[data-char='Ddo'] body {
+       background: #e99da1;
+} */
+
+.world {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px;
+}
+
+.stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+.house {
+    width: 100vw;
+    height: 100vh;
+    transform: translateZ(-500vw);
+    transform-style: preserve-3d;
+}
+
+.wall {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.wall-left {
+    left: -500vw;
+    width: 1000vW;
+    transform: rotateY(90deg);
+    background: #f8f8f8;
+}
+
+.wall-right {
+    left: -400vw;
+    width: 1000vW;
+    transform: rotateY(90deg);
+    background: #f8f8f8;
+}
+
+.wall-front-a {transform: translateZ(300vw);}
+.wall-front-b {transform: translateZ(50vw);}
+.wall-front-c {transform: translateZ(-200vw);}
+.wall-front-d {transform: translateZ(-500vw);}
+
+.wall-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wall-title {
+    font-size: 4.5rem;
+}
+
+.progress-bar-con {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 5px;
+    background: #555;
+    z-index: 100;
+}
+
+.progress-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 5px;
+    background: #00a8ff;
+}
+
+
+/* character css */
+.character[data-direction='forward'] { transform: rotateY(180deg); }
+.character[data-direction='backward'] { transform: rotateY(0deg); }
+.character[data-direction='left'] { transform: rotateY(-25deg); }
+.character[data-direction='right'] { transform: rotateY(25deg); }
+
+.character {
+    position: absolute;
+    right: 45%;
+    bottom: 5%;
+    width: 10vw;
+    height: 10vw;
+    transform-style: preserve-3d;
+}
+
+.character-face-con {
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: 1s;
+}
+
+.character-face {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.character-face.face-back {
+    transform: rotateY(180deg);
+}
+
+.me {
+    position: absolute;
+    left: 0%;
+    bottom: 5%;
+    width: 9vw;
+    height: 26.541vw;
+    transform-style: preserve-3d;
+}
+
+.me-head {
+    left: calc(66 / 510 * 100%);
+    top: 0;
+    z-index: 60;
+    width: calc(345 / 510 * 100%);
+    height: calc(400 / 1504 * 100%);
+    transform-origin: center bottom;
+    animation: ani-head 0.6s infinite alternate cubic-bezier(0.15,-0.34, 0.54, 1.24);
+}
+.me-head .face-back {
+    left: 11%;
+    top: 0.3%;
+    
+}
+
+.me-head .face-front { background-image: url('../image/me_head_front.png'); }
+.me-head .face-back { background-image: url('../image/me_head_back.png'); }
+
+.me-body {
+    left: 0;
+    top: calc(400 / 1504 * 100%);
+    z-index: 50;
+    width: 100%;
+    height: calc(578 / 1504 * 100%);
+    transform-origin: center bottom;
+    /* animation: ani-head 0.5s infinite alternate cubic-bezier(0, 0.38, 0.57, 0.77); */
+}
+.me-body .face-back {
+    left: 0;
+    width: 102%;
+}
+
+.me-body .face-front { background-image: url('../image/me_body_front.png'); }
+.me-body .face-back { background-image: url('../image/me_body_back.png'); }
+
+.me-leg-right .face-front { background-image: url('../image/me_leg_R.png'); }
+.me-leg-right .face-back { background-image: url('../image/me_leg_L.png'); }
+
+.me-leg-left {
+    left: calc(96 / 510 * 100%);
+    top: calc(970 / 1504 * 100%);
+    width: calc(158 /  510 * 100%);
+    height: calc(526 / 1504 * 100%);
+    transform-origin: center top;
+}
+.me-leg-right .face-back{
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 106%;
+}
+
+
+.me-leg-right {
+    left: calc(255 / 510 * 100%);
+    top: calc(970 / 1504 * 100%);
+    width: calc(170 /  510 * 100%);
+    height: calc(530 / 1504 * 100%);
+    transform-origin: center top;
+}
+
+
+.me-leg-left .face-front { background-image: url('../image/me_leg_L.png'); }
+.me-leg-left .face-back { background-image: url('../image/me_leg_R.png'); }
+
+
+
+.colra {
+    position: absolute;
+    right: 140%;
+    bottom: 13%;
+    width: 9vw;
+    height: 9.505vw;
+    transform-style: preserve-3d;
+}
+
+
+.colra-head {
+    left: calc(395 / 642 * 100%);
+    top: 0.55%;
+    z-index: 100;
+    width: calc(256 / 642 * 100%);
+    height: calc(280 / 678 * 100%);
+    transform-origin: center bottom;
+    animation: ani-head 0.6s infinite alternate cubic-bezier(0.12, 0.24, 0.27, 0.46);
+}
+.colra-head .face-back {
+    left: 10%;
+    top: 15%;
+    width: 155%;
+    height: 100%;
+}
+
+.colra-head .face-front{ background-image: url('../image/C_head_front.png'); }
+.colra-head .face-back { background-image: url('../image/R_head_back.png'); }
+
+.colra-body {
+    left: calc(104.5 / 642 * 100%);
+    top: calc(282 / 678 * 100%);
+    z-index: 60;
+    width: calc(545 / 642 * 100%);
+    height: calc(184 / 678 * 100%);
+    transform-origin: center bottom;
+    animation: ani-body 0.6s infinite alternate cubic-bezier(0, 0.38, 0.57, 0.77);
+}
+.colra-body .face-back {
+    left: -15%;
+    top: -0.5%;
+    width: 125%;
+    height: 140%;
+}
+
+.colra-body .face-front { background-image: url('../image/C_body.png'); }
+.colra-body .face-back { background-image: url('../image/R_body.png'); }
+
+.colra-tail {
+    left: 2%;
+    top: calc(135 / 678 * 100%);
+    z-index: 0;
+    width: calc(122 / 642 * 100%);
+    height: calc(217 / 678 * 100%);
+    transform-origin: bottom right;
+    animation: ani-running-tail 0.5s infinite alternate cubic-bezier(0, 0.38, 0.57, 0.77);
+}
+.colra-tail .face-back {
+    left: -55%;
+    top: -10%;
+    width: 110%;
+    height: 130%;
+    animation: ani-tail 0.3s alternate-reverse;
+}
+
+.colra-tail .face-front { background-image: url('../image/C_tail.png'); }
+.colra-tail .face-back { background-image: url('../image/R_tail.png'); }
+
+
+
+.colra-leg-left {
+    left: calc(105 / 642 * 100%);
+    top: calc(460 / 678 * 100%);
+    width: calc(425 /  510 * 100%);
+    height: calc(212 / 678 * 100%);
+    transform-origin: center top;
+}
+.colra-leg-left .face-back {
+    left: -12%;
+    top: 30%;
+    width: 140%;
+    height: 100%;
+}
+
+.colra-leg-right {
+    left: calc(99 / 642 * 100%);
+    top: calc(460 / 678 * 100%);
+    width: calc(435 /  510 * 100%);
+    height: calc(212 / 678 * 100%);
+    transform-origin: center top;
+}
+.colra-leg-right .face-back {
+    left: -6.5%;
+    top: 33%;
+    width: 132%;
+    height: 105%;
+}
+
+.colra-leg-right .face-front { background-image: url('../image/C_leg_R.png'); } 
+.colra-leg-right .face-back { background-image: url('../image/R_leg_R.png'); } 
+
+.colra-leg-left .face-front { background-image: url('../image/C_leg_L.png'); }
+.colra-leg-left .face-back { background-image: url('../image/R_leg_L.png'); }
+
+
+
+.rowin {
+    position: absolute;
+    left: 115%;
+    bottom: 10%;
+    width: 11vw;
+    height: 10vw;
+    transform-style: preserve-3d;
+}
+
+
+.rowin-head {
+    left: 0;
+    top: 0;
+    z-index: 60;
+    width: calc(455 / 869 * 100%);
+    height: calc(280 / 690 * 100%);
+    transform-origin: center bottom;
+    animation: ani-head 0.6s infinite alternate cubic-bezier(0.12, 0.24, 0.27, 0.46);
+}
+.rowin-head .face-back {
+    left: 27%;
+    top: 6%;
+    width: 62%;
+    height: 100%;
+}
+
+.rowin-head .face-front{ background-image: url('../image/R_head_front.png'); }
+.rowin-head .face-back { background-image: url('../image/C_head_back.png'); }
+
+.rowin-body {
+    left: calc(121 / 869 * 100%);
+    top: calc(200 / 690 * 100%);
+    z-index: 10;
+    width: calc(775 / 869 * 100%);
+    height: calc(268 / 690 * 100%);
+    transform-origin: center bottom;
+    animation: ani-body 0.6s infinite alternate cubic-bezier(0, 0.38, 0.57, 0.77);
+}
+.rowin-body .face-back {
+    left: 0%;
+    top: 33%;
+    width: 80%;
+    height: 70%;
+}
+
+.rowin-body .face-front { background-image: url('../image/R_body.png'); }
+.rowin-body .face-back { background-image: url('../image/C_body.png'); }
+
+.rowin-tail {
+    left: calc(835 / 869 * 100%);
+    top: calc(40 / 678 * 100%);
+    z-index: 60;
+    width: calc(135 / 869 * 100%);
+    height: calc(275 / 690 * 100%);
+    transform-origin: bottom left;
+    animation: ani-running-tail 0.5s infinite alternate cubic-bezier(0.37,-0.17, 0.56, 1.17);
+}
+.rowin-tail .face-back {
+    left: -150%;
+    top: 50%;
+    width: 80%;
+    height: 70%;
+    transform-origin: top right;
+}
+
+.rowin-tail .face-front { background-image: url('../image/R_tail.png'); }
+.rowin-tail .face-back { background-image: url('../image/C_tail.png'); }
+
+.rowin-leg-left {
+    left: 3%;
+    top: calc(467 / 690 * 100%);
+    width: calc( 845 /  869 * 100%);
+    height: calc(200 / 690 * 100%);
+    transform-origin: left top;
+}
+.rowin-leg-left .face-back {
+    left: 20%;
+    top: 3%;
+    width: 65%;
+    height: 110%;
+}
+
+.rowin-leg-right {
+    left: 3.1%;
+    top: calc(467 / 690 * 100%);
+    width: calc( 845 /  869 * 100%);
+    height: calc(230 / 690 * 100%);
+    transform-origin: right top;
+}
+.rowin-leg-right .face-back {
+    left: 9.5%;
+    top: 3%;
+    width: 75%;
+    height: 80%;
+}
+
+.rowin-leg-right .face-front { background-image: url('../image/R_leg_R.png'); } 
+.rowin-leg-right .face-back { background-image: url('../image/C_leg_R.png'); } 
+
+.rowin-leg-left .face-front { background-image: url('../image/R_leg_L.png'); }
+.rowin-leg-left .face-back { background-image: url('../image/C_leg_L.png'); }
+
+
+
+
+/* animation */
+
+.character.running .me-leg-right { animation: ani-running-leg 0.6s alternate infinite linear; }
+.character.running .me-leg-left { animation: ani-running-leg 0.6s alternate-reverse infinite linear; }
+
+.character.running .colra-leg-right { animation: ani-running-leg 0.35s alternate infinite linear; }
+.character.running .colra-leg-left { animation: ani-running-leg 0.35s alternate-reverse infinite linear; }
+.character.running .colra-tail { animation: ani-running-tail 0.2s alternate infinite linear; }
+
+.character.running .rowin-leg-right { animation: ani-running-leg 0.4s alternate infinite linear; }
+.character.running .rowin-leg-left { animation: ani-running-leg 0.4s alternate-reverse infinite linear; }
+.chacracter.running .rowin-tail { animation: ani-running-tail 0.2s alternate infinite linear; }
+
+
+
+
+
+
+/* Ddo image */
+
+body[data-char='Ddo'] .me {
+    position: absolute;
+    left: 0%;
+    bottom: 5%;
+    width: 9vw;
+    height: 24.354vw;
+    transform-style: preserve-3d;
+}
+
+
+body[data-char='Ddo'] .me-head {
+    left: 13%;
+    top: 0.5%;
+    width: 70%;
+    height: 25%;
+}
+
+body[data-char='Ddo'] .me-head .face-back {
+    left: 8.5%;
+    top: 0%;
+    width: 90%;
+    height: 95%;
+}
+
+body[data-char='Ddo'] .me-head .face-front { background-image: url('../image/Ddo_head_front.png'); }
+body[data-char='Ddo'] .me-head .face-back { background-image: url('../image/Ddo_haed_back.png'); }
+
+
+body[data-char='Ddo'] .rowin-head {
+    left: 0;
+    top: 0%;
+    z-index: 60;
+    width: calc(455 / 869 * 100%);
+    height: calc(280 / 690 * 100%);
+}
+
+body[data-char='Ddo'] .rowin-head .face-front { background-image: url('../image/R_angry.png'); }
+body[data-char='Ddo'] .colra-head .face-back { background-image: url('../image/R_angry.png'); }
+
+
+body[data-char='Ddo'] .me-body {
+    left: calc(66 / 510 * 100%);
+    top: calc(300 / 1261 * 100%);
+    z-index: 500;
+    width: calc(340 / 466 * 100%);
+    height: calc(466 / 1261 * 100%);
+    transform-origin: center center;
+}
+body[data-char='Ddo'] .me-body .face-back {
+    left: -18.5%;
+    top: -2.5%;
+    width: 145%;
+    height: 105%;  
+}
+
+body[data-char='Ddo'] .me-body .face-front { background-image: url('../image/Ddo_body_front.png'); }
+body[data-char='Ddo'] .me-body .face-back { background-image: url('../image/Ddo_body_back.png'); }
+
+body[data-char='Ddo'] .me-arm-right {
+    left: calc(295 / 466 * 100%);
+    top: calc(500 / 1261 * 100%);
+    width: calc(180 / 466 * 100%);
+    height: calc(300 / 1261 * 100%);
+    z-index: 20;
+    transform-origin: left top;
+    /* animation: ani-head 0.6s infinite alternate cubic-bezier(0.15,-0.34, 0.54, 1.24); */
+}
+
+body[data-char='Ddo'] .me-arm-right .face-front { background-image: url('../image/Ddo_arm_R.png'); }
+/* body[data-char='Ddo'] .me-arm-right .face-back { background-image: url('../image/Ddo_arm_L.png'); } */
+
+body[data-char='Ddo'] .me-arm-left {
+    left: -2%;
+    top: calc(500 / 1261 * 100%);
+    width: calc(138 / 466 * 100%);
+    height: calc(300 / 1261 * 100%);
+    z-index: 20;
+    transform-origin: right top;
+    /* animation: ani-head 0.6s infinite alternate reverse cubic-bezier(0.15,-0.34, 0.54, 1.24); */
+}
+body[data-char='Ddo'] .me-arm-right.face-back {
+    left: 5%;
+}
+
+body[data-char='Ddo'] .me-arm-left .face-front { background-image: url('../image/Ddo_arm_L.png'); }
+/* body[data-char='Ddo'] .me-arm-left .face-back { background-image: url('../image/Ddo_arm_R.png'); } */
+
+body[data-char='Ddo'] .me-arm-left .face-back {
+    left: 4%;
+    top: 6%;
+    width: 120%;
+    height: 90%;
+}
+
+
+
+body[data-char='Ddo'] .me-leg-right {
+    left: calc(255 / 510 * 100%);
+    top: calc(760 / 1261 * 100%);
+    width: calc(155 / 466 * 100%);
+    height: calc(580 / 1261 * 100%);
+    transform-origin: center top;
+}
+
+body[data-char='Ddo'] .me-leg-right .face-back {
+    left: 2%;
+    top:-1%;
+    width: 105%;
+    height: 100%;
+}
+
+body[data-char='Ddo'] .me-leg-left .face-back {
+    left: 9%;
+    width: 90%;
+    height: 100%;
+}
+
+body[data-char='Ddo'] .me-leg-right .face-front { background-image: url('../image/Ddo_leg_R.png'); }
+body[data-char='Ddo'] .me-leg-right .face-back { background-image: url('../image/Ddo_leg_L.png'); }
+
+body[data-char='Ddo'] .me-leg-left {
+    left: calc(75 / 510 * 100%);
+    top: calc(750 / 1261 * 100%);
+    width: calc(160 / 466 * 100%);
+    height: calc(550 / 1261 * 100%);
+    transform-origin: center top;
+}
+body[data-char='Ddo'] .me-leg-left .face-front { background-image: url('../image/Ddo_leg_L.png'); }
+body[data-char='Ddo'] .me-leg-left .face-back { background-image: url('../image/Ddo_leg_R.png'); }
+
+
+/* effect */
+body[data-char='Ddo'] .rowin-effect .face-front { background-image: url('../image/effect_angry.png'); }
+body[data-char='Ddo'] .rowin-effect .face-back { background-image: url('../image/effect_heart.png'); }
+
+body[data-char='Ddo'] .rowin-effect {
+    left: 30%;
+    top: 5%;
+    z-index: 25160;
+    width: 15%;
+    height: 15%;
+}
+body[data-char='Ddo'] .rowin-effect .face-back {
+    left: -70%;
+    top: -163%;
+    z-index: 25160;
+    width: 165%;
+    height: 165%;
+    /* transform-origin: bottom;
+    animation: ani-head 0.7s infinite alternate cubic-bezier(0, 0.38, 0.57, 0.77); */
+    
+}
+
+body[data-char='Ddo'] .colra-effect .face-front { background-image: url('../image/effect_heart.png'); }
+body[data-char='Ddo'] .colra-effect .face-back { background-image: url('../image/effect_angry.png'); }
+
+body[data-char='Ddo'] .colra-effect {
+    left: 65%;
+    top: -30%;
+    z-index: 25160;
+    width: 30%;
+    height: 30%;
+    transform-origin: bottom;
+    animation: ani-head 0.7s infinite alternate cubic-bezier(0, 0.38, 0.57, 0.77);
+}
+
+body[data-char='Ddo'] .colra-effect .face-back {
+    left: 40%;
+    top: 150%;
+    z-index: 25160;
+    width: 40%;
+    height: 40%;
+}
+
+
+/* character button */
+.select-character {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 100;
+}
+.select-character-btn {
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    border: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.select-character-btn-me {
+    background-image: url('../image/btn_image_me.png');
+    background-size: 42px auto;
+}
+.select-character-btn-Ddo {
+    background-image: url('../image/btn_image_Ddo.png');
+    opacity: 0.5;
+}
+body[data-char='Ddo'] .select-character-btn-me {
+    opacity: 0.5;
+}
+body[data-char='me'] .select-character-btn-me,
+body[data-char='Ddo'] .select-character-btn-Ddo {
+    opacity: 1;
+}
