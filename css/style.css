@@ -44,12 +44,13 @@ body {
     font-family: 'Apple SD gothic Neo', 'Roboto', 'Noto Sans KR', 'NanumGothic', 'Malgun Gothic', sans-serif;
     -webkit-overflow-scrolling: touch;
     color: #555;
-    background: #ffbe93;
+    background: #b2e097;
+    transition: 1s;
 }
 
-/* body[data-char='Ddo'] body {
-       background: #e99da1;
-} */
+body[data-char='Ddo'] {
+       background: #f8c0c2;
+}
 
 .world {
     position: fixed;
@@ -84,6 +85,17 @@ body {
     height: 100vh;
     background: rgba(255, 255, 255, 0.8);
 }
+.wall-bottom {
+    font-size: 20vw;
+    text-align: center;
+    justify-content: center;
+    font: #555;
+    left: -50vw;
+    top: 300vw;
+    width: 200vw;
+    height: 100vh;
+    background: #ffbe93;
+    }
 
 .wall-left {
     left: -500vw;
