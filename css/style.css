@@ -85,7 +85,7 @@ body[data-char='Ddo'] {
     height: 100vh;
     background: rgba(255, 255, 255, 0.8);
 }
-.wall-bottom {
+/* .wall-bottom {
     font-size: 20vw;
     text-align: center;
     justify-content: center;
@@ -95,7 +95,7 @@ body[data-char='Ddo'] {
     width: 200vw;
     height: 100vh;
     background: #ffbe93;
-    }
+    } */
 
 .wall-left {
     left: -500vw;
